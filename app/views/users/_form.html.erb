@@ -32,11 +32,6 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :active %>
-    <%= form.check_box :active, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="my-5">
     <%= form.label :role %>
     <%= form.select :role, User::ROLES.sort.map{ |role| [role.titleize, role]}, {}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
@@ -49,6 +44,11 @@
   <div class="my-5">
     <%= form.label :dino_costume_size %>
     <%= form.text_field :dino_costume_size, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5 flex items-center">
+    <%= form.check_box :active, class: "block h-5 w-5 mr-2" %>
+    <%= form.label :active %>
   </div>
 
   <div class="inline">
