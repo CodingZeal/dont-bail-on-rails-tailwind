@@ -42,8 +42,15 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :dino_costume_size %>
-    <%= form.text_field :dino_costume_size, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :dino_costume_size, class: "text-bold" %>
+    <div class="flex items-center gap-2">
+      <% User::SIZES.each do |size| %>
+        <label class="checkbox-label shadow rounded-md border border-gray-200 p-2">
+          <%= form.radio_button :dino_costume_size, size %>
+          <%= size.titleize%>
+        </label>
+      <% end %>
+    </div>
   </div>
 
   <div class="my-5 flex items-center">

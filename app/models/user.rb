@@ -5,6 +5,12 @@ class User < ApplicationRecord
     'dino_tamer'
   ]
 
+  SIZES = [
+    'Microraptor',
+    'Velociraptor',
+    'Titanosaurs'
+  ]
+
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
