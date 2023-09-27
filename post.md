@@ -1,30 +1,30 @@
-# Integrating TailwindCSS with Ruby on Rails
+# How to add TailwindCSS to Ruby on Rails
 
-TailwindCSS, when integrated with Rails applications, provides a myriad of advantages that can enhance both the developer experience and the user interface. Here's a deep dive into integrating TailwindCSS with your Rails application.
+TailwindCSS, when paired with Rails applications, offers numerous benefits that significantly elevate both the developer experience and the end-user interface. This article provides a comprehensive guide on integrating TailwindCSS into your Rails application.
 
-### Sample application
+## Sample application
 
-To reference code used in this article, [checkout the repo](https://github.com/CodingZeal/dont-bail-on-rails-tailwind).
+For code references used in this article, [checkout the repo](https://github.com/CodingZeal/dont-bail-on-rails-tailwind).
 
-### Ruby Gem or NPM Package?
+## Ruby Gem or NPM Package?
 
-The choice between the [tailwindcss-rails](https://github.com/rails/tailwindcss-rails) gem and the NPM package [tailwindcss](https://github.com/tailwindlabs/tailwindcss) often comes down to your application's configuration:
+Your application's configuration typically dictates the choice between using the [tailwindcss-rails](https://github.com/rails/tailwindcss-rails) gem and the NPM package [tailwindcss](https://github.com/tailwindlabs/tailwindcss).
 
 - **When to use the gem:** opt for the gem when you're focusing on server-side rendering of views, particularly with ERB templates. This approach is streamlined and harmonizes well with the Rails asset pipeline. Typically Rails would be configured to use `importmap` for loading JavaScript packages.
 
 - **When to use the NPM package:** in scenarios where you are rendering views via JavaScript on the client and using Webpack, esbuild, or Rollup to compile your JavaScript and other front end assets. See this [article](https://www.codingzeal.com/post/tailwind-is-a-popular-library-here-is-how-to-add-it-to-redwoodjs) about using Tailwind with RedwoodJS for more details.
 
-### Setting up a new Rails application with the `tailwindcss-rails` gem
+## Setting up a new Rails application with the `tailwindcss-rails` gem
 
-When creating a new Rails application, you can directly include the TailwindCSS setup by using:
+To configure a new Rails application with TailwindCSS, use:
 
 ```bash
 rails new myapp --css tailwind
 ```
 
-### Adding Tailwind to an existing Rails app
+## Adding Tailwind to an existing Rails app
 
-For an existing Rails application, add the `tailwindcss-rails` gem to your `Gemfile`:
+For pre-existing Rails applications, add the `tailwindcss-rails` gem to your `Gemfile`:
 
 ```ruby
 gem 'tailwindcss-rails'
@@ -44,7 +44,7 @@ Expect the install command to generate the following files:
 - `config/tailwind.config.js`
 - `Procfile.dev`
 
-### What's up with the `bin/dev` script?
+## What's up with the `bin/dev` script?
 
 The `bin/dev` script helps run development-related tasks concurrently using `foreman`.
 
@@ -52,7 +52,7 @@ The `Procfile.dev` file contains a `tailwindcss:watch` entry. This process watch
 
 In the [sample application](https://github.com/CodingZeal/dont-bail-on-rails-tailwind), there's a notable change: transitioning from [foreman](https://www.theforeman.org/) to [overmind](https://github.com/DarthSim/overmind). Overmind offers better performance and debugging features than foreman.
 
-### Using scaffold with the Tailwind gem
+## Using scaffold with the Tailwind gem
 
 One of the gems (pun intended!) of the `tailwindcss-rails` is its ability to style scaffolded views using Tailwind's utility classes. This means when you run:
 
@@ -62,17 +62,19 @@ rails generate scaffold Post title:string content:text
 
 The views generated will be styled with Tailwind out of the box!
 
-### Custom Tailwind in the sample application
+## Custom Tailwind in the sample application
 
 In the sample application, there's a custom Tailwind utility for styling radio buttons. Located in `app/assets/stylesheets/application.tailwind.css`, there's a custom class that makes use of the CSS `:has` pseudo-class for radio button styling. It's important to note that [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:has#browser_compatibility) is experimental and not supported in all browsers.
 
-### Automatically included in the asset pipeline
+## Seamless integration with the asset pipeline
 
 The `tailwindcss-rails` gem automatically integrates with the Rails asset pipeline. Therefore, production deployments are much easier since rails will precompile all of the Tailwind utitlity classes automatically.
 
-### Conclusion
+## Final thoughts
 
-We love using TailwindCSS in JavaScript and Ruby on Rails applications. You may find these resources helpful:
+Integrating the `tailwindcss-rails` gem into your Ruby on Rails applications is surprisingly simple. We hope you found this article helpful.
+
+## Resources
 
 - https://tailwindcss.com/docs/guides/ruby-on-rails
 - https://guides.rubyonrails.org/working_with_javascript_in_rails.html
