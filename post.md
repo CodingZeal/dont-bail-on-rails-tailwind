@@ -6,13 +6,13 @@ TailwindCSS, when paired with Rails applications, offers numerous benefits that 
 
 For code references used in this article, [checkout the repo](https://github.com/CodingZeal/dont-bail-on-rails-tailwind).
 
-## Ruby Gem or NPM Package?
+## NPM Package or Ruby Gem?
 
 Your application's configuration typically dictates the choice between using the [tailwindcss-rails](https://github.com/rails/tailwindcss-rails) gem and the NPM package [tailwindcss](https://github.com/tailwindlabs/tailwindcss).
 
-- **When to use the gem:** opt for the gem when you're focusing on server-side rendering of views, particularly with ERB templates. This approach is streamlined and harmonizes well with the Rails asset pipeline. Typically Rails would be configured to use `importmap` for loading JavaScript packages.
+- **When to use the NPM package:** in scenarios where you are rendering views via JavaScript on the client and using Webpack, esbuild, or Rollup to compile your JavaScript and other front end assets. [Tailwind has great documentation](https://tailwindcss.com/docs/installation) for setting up with NPM. You can also reference [our article](https://www.codingzeal.com/post/tailwind-is-a-popular-library-here-is-how-to-add-it-to-redwoodjs) about how to set up Tailwind with RedwoodJS.
 
-- **When to use the NPM package:** in scenarios where you are rendering views via JavaScript on the client and using Webpack, esbuild, or Rollup to compile your JavaScript and other front end assets. See this [article](https://www.codingzeal.com/post/tailwind-is-a-popular-library-here-is-how-to-add-it-to-redwoodjs) about using Tailwind with RedwoodJS for more details.
+- **When to use the gem:** opt for the gem when you're focusing on server-side rendering of views, particularly with ERB templates. This approach is streamlined and harmonizes well with the Rails asset pipeline. Typically Rails would be configured to use `importmap` for loading JavaScript packages. This article will focus on how to set up Tailwind using the Ruby gem.
 
 ## Setting up a new Rails application with the `tailwindcss-rails` gem
 
@@ -50,7 +50,7 @@ The `bin/dev` script helps run development-related tasks concurrently using `for
 
 The `Procfile.dev` file contains a `tailwindcss:watch` entry. This process watches and compiles the Tailwind utility classes used in your `.erb` files. If this process isn't running, the styles won't render in the browser.
 
-In the [sample application](https://github.com/CodingZeal/dont-bail-on-rails-tailwind), there's a notable change: transitioning from [foreman](https://www.theforeman.org/) to [overmind](https://github.com/DarthSim/overmind). Overmind offers better performance and debugging features than foreman.
+In the [sample application](https://github.com/CodingZeal/dont-bail-on-rails-tailwind), there's a notable change: transitioning from [foreman](https://www.theforeman.org/) to [overmind](https://github.com/DarthSim/overmind). Overmind offers better performance and debugging features than foreman. See [Jason Fleetwood-Boldt's post](https://jasonfleetwoodboldt.com/courses/rails-7-crash-course/how-the-rails-procfile-works-foreman-overmind-hivemind/) on the differences between Foreman and Overmind.
 
 ## Using scaffold with the Tailwind gem
 
@@ -61,10 +61,6 @@ rails generate scaffold Post title:string content:text
 ```
 
 The views generated will be styled with Tailwind out of the box!
-
-## Custom Tailwind in the sample application
-
-In the sample application, there's a custom Tailwind utility for styling radio buttons. Located in `app/assets/stylesheets/application.tailwind.css`, there's a custom class that makes use of the CSS `:has` pseudo-class for radio button styling. It's important to note that [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:has#browser_compatibility) is experimental and not supported in all browsers.
 
 ## Seamless integration with the asset pipeline
 
